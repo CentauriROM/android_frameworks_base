@@ -3662,10 +3662,9 @@ public class PackageManagerService extends IPackageManager.Stub {
                         } else {
                             generateIdmap(pkgName, opkg);
                         }
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         Log.w(TAG, "Unable to create idmap for " + pkgName
                                 + ": no overlay packages", e);
-                        return false;
                     }
                 }
             }
@@ -5369,7 +5368,7 @@ public class PackageManagerService extends IPackageManager.Stub {
             // Generate Idmaps if pkg is not a theme
             if (pkg.mOverlayTargets.isEmpty() && mOverlays.containsKey(pkg.packageName)) {
                 if (!createIdmapsForPackageLI(pkg)) {
-                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_IDMAP_ERROR;
+                    mLastScanError = PackageManager.INSTALL_FAILED_UPDATE_INCOMPATIBLE;
                     return null;
                 }
             }
@@ -5385,18 +5384,13 @@ public class PackageManagerService extends IPackageManager.Stub {
                         try {
                             generateIdmapForLegacyTheme(target, pkg);
                         } catch (Exception e) {
-                            mLastScanError = PackageManager.INSTALL_FAILED_THEME_IDMAP_ERROR;
+                            mLastScanError = PackageManager.INSTALL_FAILED_INTERNAL_ERROR;
                             uninstallThemeForAllApps(pkg);
-                            deletePackageLI(pkg.packageName, null, true,
-                                    null, null, 0, null, false);
                             return null;
                         }
                     }
                     continue;
                 }
-
-                // pkg is a theme and not legacy
-                Exception failedException = null;
                 try {
                     ThemeUtils.createCacheDirIfNotExists();
                     if (hasCommonResources(pkg)
@@ -5407,26 +5401,13 @@ public class PackageManagerService extends IPackageManager.Stub {
                         compileResources(COMMON_OVERLAY, pkg);
                         mAvailableCommonResources.put(pkg.packageName, System.currentTimeMillis());
                     }
-                    ThemeUtils.createResourcesDirIfNotExists(target,
-                            pkg.applicationInfo.publicSourceDir);
+                    ThemeUtils.createResourcesDirIfNotExists(target, pkg.applicationInfo.publicSourceDir);
                     compileResources(target, pkg);
                     generateIdmap(target, pkg);
-                } catch(IdmapException e) {
-                    failedException = e;
-                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_IDMAP_ERROR;
-                } catch(AaptException e) {
-                    failedException = e;
-                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_AAPT_ERROR;
                 } catch(Exception e) {
-                    failedException = e;
-                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_UNKNOWN_ERROR;
-                }
-
-                if (failedException != null) {
-                    // Theme install failed, cleanup!
-                    Log.w(TAG, "Unable to process theme " + pkgName, failedException);
+                    Log.w(TAG, "Unable to process theme " + pkgName, e);
+                    mLastScanError = PackageManager.INSTALL_FAILED_INTERNAL_ERROR;
                     uninstallThemeForAllApps(pkg);
-                    deletePackageLI(pkg.packageName, null, true, null, null, 0, null, false);
                     return null;
                 }
             }
@@ -5438,9 +5419,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                     ThemeUtils.createIconDirIfNotExists(pkg.packageName);
                     compileIconPack(pkg);
                 } catch(Exception e) {
-                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_AAPT_ERROR;
+                    mLastScanError = PackageManager.INSTALL_FAILED_INTERNAL_ERROR;
                     uninstallThemeForAllApps(pkg);
-                    deletePackageLI(pkg.packageName, null, true, null, null, 0, null, false);
                 }
             }
         }
@@ -5472,15 +5452,12 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
     }
 
-    private void generateIdmapForLegacyTheme(String target, PackageParser.Package opkg)
-            throws IOException, IdmapException {
+    private void generateIdmapForLegacyTheme(String target, PackageParser.Package opkg) throws IOException {
         try {
             createTempPackageRedirections(target, opkg.mPackageRedirections.get(target));
             PackageParser.Package targetPkg = mPackages.get(target);
-            if (targetPkg != null &&
-                    !createIdmapForPackagePairLI(targetPkg, opkg, REDIRECTIONS_PATH)) {
-                throw new IdmapException("legacy idmap failed for targetPkg: " + target
-                        + " and opkg: " + opkg);
+            if (targetPkg != null && !createIdmapForPackagePairLI(targetPkg, opkg, REDIRECTIONS_PATH)) {
+                mLastScanError = PackageManager.INSTALL_FAILED_UPDATE_INCOMPATIBLE;
             }
         } finally {
             cleanupTempPackageRedirections();
@@ -5496,23 +5473,10 @@ public class PackageManagerService extends IPackageManager.Stub {
         map.put(opkg.packageName, opkg);
     }
 
-    private void generateIdmap(String target, PackageParser.Package opkg) throws IdmapException {
+    private void generateIdmap(String target, PackageParser.Package opkg) {
         PackageParser.Package targetPkg = mPackages.get(target);
         if (targetPkg != null && !createIdmapForPackagePairLI(targetPkg, opkg, "")) {
-            throw new IdmapException("idmap failed for targetPkg: " + targetPkg
-                    + " and opkg: " + opkg);
-        }
-    }
-
-    public class AaptException extends Exception {
-        public AaptException(String message) {
-            super(message);
-        }
-    }
-
-    public class IdmapException extends Exception {
-        public IdmapException(String message) {
-            super(message);
+            mLastScanError = PackageManager.INSTALL_FAILED_UPDATE_INCOMPATIBLE;
         }
     }
 
@@ -5545,7 +5509,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (mInstaller.aapt(pkg.mScanPath, internalPath, resPath, sharedGid, pkgId,
                 hasCommonResources ? ThemeUtils.getResDir(COMMON_OVERLAY, pkg)
                         + File.separator + "resources.apk" : "") != 0) {
-            throw new AaptException("Failed to run aapt");
+            throw new Exception("Failed to run aapt");
         }
     }
 
@@ -5555,7 +5519,7 @@ public class PackageManagerService extends IPackageManager.Stub {
 
         if (mInstaller.aapt(pkg.mScanPath, APK_PATH_TO_ICONS, resPath, sharedGid,
                 Resources.THEME_ICON_PKG_ID, "") != 0) {
-            throw new AaptException("Failed to run aapt");
+            throw new Exception("Failed to run aapt");
         }
     }
 
