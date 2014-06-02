@@ -116,6 +116,7 @@ public class KeyguardViewManager {
     private int mBlurRadius = 12;
     private boolean mSeeThrough = false;
     private boolean mIsCoverflow = true;
+    private Drawable mCustomBackground;
 
     private NotificationHostView mNotificationView;
     private NotificationViewManager mNotificationViewManager;
