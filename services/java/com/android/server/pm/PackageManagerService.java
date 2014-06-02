@@ -5369,7 +5369,8 @@ public class PackageManagerService extends IPackageManager.Stub {
             // Generate Idmaps if pkg is not a theme
             if (pkg.mOverlayTargets.isEmpty() && mOverlays.containsKey(pkg.packageName)) {
                 if (!createIdmapsForPackageLI(pkg)) {
-                    Log.w(TAG, "Failed to create idmaps for " + pkg);
+                    mLastScanError = PackageManager.INSTALL_FAILED_THEME_IDMAP_ERROR;
+                    return null;
                 }
             }
 
