@@ -1930,8 +1930,8 @@ class ContextImpl extends Context {
         ContextImpl c = new ContextImpl();
         c.init(mPackageInfo, null, mMainThread);
         c.mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                mPackageInfo.getOverlayDirs(), getDisplayId(), overrideConfiguration,
-                mResources.getCompatibilityInfo(), mActivityToken);
+                getDisplayId(), overrideConfiguration, mResources.getCompatibilityInfo(),
+                mActivityToken);
         return c;
     }
 
@@ -1948,7 +1948,7 @@ class ContextImpl extends Context {
         context.mDisplay = display;
         DisplayAdjustments daj = getDisplayAdjustments(displayId);
         context.mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                mPackageInfo.getOverlayDirs(), displayId, null, daj.getCompatibilityInfo(), null);
+                displayId, null, daj.getCompatibilityInfo(), null);
         return context;
     }
 
@@ -2060,8 +2060,7 @@ class ContextImpl extends Context {
             mDisplayAdjustments.setCompatibilityInfo(compatInfo);
             mDisplayAdjustments.setActivityToken(activityToken);
             mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                    mPackageInfo.getOverlayDirs(), Display.DEFAULT_DISPLAY, null, compatInfo,
-                    activityToken);
+                    Display.DEFAULT_DISPLAY, null, compatInfo, activityToken);
         } else {
             mDisplayAdjustments.setCompatibilityInfo(packageInfo.getCompatibilityInfo());
             mDisplayAdjustments.setActivityToken(activityToken);
