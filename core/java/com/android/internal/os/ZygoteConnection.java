@@ -16,7 +16,6 @@
 
 package com.android.internal.os;
 
-import android.graphics.Typeface;
 import android.net.Credentials;
 import android.net.LocalSocket;
 import android.os.Process;
@@ -221,10 +220,33 @@ class ZygoteConnection {
                 ZygoteInit.setCloseOnExec(serverPipeFd, true);
             }
 
-            //Replace the font cache if the theme changed
-            if (parsedArgs.refreshTheme) {
-                Typeface.recreateDefaults();
+            /**
+             * In order to avoid leaking descriptors to the Zygote child,
+             * the native code must close the two Zygote socket descriptors
+             * in the child process before it switches from Zygote-root to
+             * the UID and privileges of the application being launched.
+             *
+             * In order to avoid "bad file descriptor" errors when the
+             * two LocalSocket objects are closed, the Posix file
+             * descriptors are released via a dup2() call which closes
+             * the socket and substitutes an open descriptor to /dev/null.
+             */
+
+            int [] fdsToClose = { -1, -1 };
+
+            FileDescriptor fd = mSocket.getFileDescriptor();
+
+            if (fd != null) {
+                fdsToClose[0] = fd.getInt$();
             }
+
+            fd = ZygoteInit.getServerSocketFileDescriptor();
+
+            if (fd != null) {
+                fdsToClose[1] = fd.getInt$();
+            }
+
+            fd = null;
 
             pid = Zygote.forkAndSpecialize(parsedArgs.uid, parsedArgs.gid, parsedArgs.gids,
                     parsedArgs.debugFlags, rlimits, parsedArgs.mountExternal, parsedArgs.seInfo,
@@ -355,9 +377,6 @@ class ZygoteConnection {
 
         /** from --invoke-with */
         String invokeWith;
-
-        /** from --refresh_theme */
-        boolean refreshTheme;
 
         /**
          * Any args after and including the first non-option arg
@@ -518,8 +537,6 @@ class ZygoteConnection {
                     mountExternal = Zygote.MOUNT_EXTERNAL_MULTIUSER;
                 } else if (arg.equals("--mount-external-multiuser-all")) {
                     mountExternal = Zygote.MOUNT_EXTERNAL_MULTIUSER_ALL;
-                } else if (arg.equals("--refresh_theme")) {
-                    refreshTheme = true;
                 } else {
                     break;
                 }

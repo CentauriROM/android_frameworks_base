@@ -4347,13 +4347,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mQS.updateResources();
             }
         }
-
-        // Update the QuickSettings container
-        if (mQS != null) mQS.updateResources();
-        if (mNavigationBarView != null)  {
-            mNavigationBarView.updateResources();
-            updateSearchPanel();
-        }
     }
 
     protected void loadDimens() {

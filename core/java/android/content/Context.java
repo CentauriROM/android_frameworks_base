@@ -2456,16 +2456,6 @@ public abstract class Context {
 
     /**
      * Use with {@link #getSystemService} to retrieve a
-     * {@link android.content.res.ThemeManager} for accessing theme service.
-     *
-     * @see #getSystemService
-     * @see android.content.res.ThemeManager
-     * @hide
-     */
-    public static final String THEME_SERVICE = "themes";
-
-    /**
-     * Use with {@link #getSystemService} to retrieve a
      * {@link android.os.BatteryManager} for access battery information.
      *
      * @see #getSystemService

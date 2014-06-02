@@ -17,8 +17,6 @@
 
 package android.app;
 
-import android.content.res.IThemeService;
-import android.content.res.ThemeManager;
 import android.os.Build;
 import com.android.internal.policy.PolicyManager;
 import com.android.internal.util.Preconditions;
@@ -593,14 +591,6 @@ class ContextImpl extends Context {
         registerService(CONSUMER_IR_SERVICE, new ServiceFetcher() {
             public Object createService(ContextImpl ctx) {
                 return new ConsumerIrManager(ctx);
-            }});
-
-        registerService(THEME_SERVICE, new ServiceFetcher() {
-            public Object createService(ContextImpl ctx) {
-                IBinder b = ServiceManager.getService(THEME_SERVICE);
-                IThemeService service = IThemeService.Stub.asInterface(b);
-                return new ThemeManager(ctx.getOuterContext(),
-                        service);
             }});
     }
 
@@ -1940,8 +1930,8 @@ class ContextImpl extends Context {
         ContextImpl c = new ContextImpl();
         c.init(mPackageInfo, null, mMainThread);
         c.mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                mPackageInfo.getOverlayDirs(), getDisplayId(), mPackageInfo.getAppDir(), overrideConfiguration,
-                mResources.getCompatibilityInfo(), mActivityToken, c);
+                mPackageInfo.getOverlayDirs(), getDisplayId(), overrideConfiguration,
+                mResources.getCompatibilityInfo(), mActivityToken);
         return c;
     }
 
@@ -1958,7 +1948,7 @@ class ContextImpl extends Context {
         context.mDisplay = display;
         DisplayAdjustments daj = getDisplayAdjustments(displayId);
         context.mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                mPackageInfo.getOverlayDirs(), displayId, mPackageInfo.getAppDir(), null, daj.getCompatibilityInfo(), null, context);
+                mPackageInfo.getOverlayDirs(), displayId, null, daj.getCompatibilityInfo(), null);
         return context;
     }
 
@@ -2070,8 +2060,8 @@ class ContextImpl extends Context {
             mDisplayAdjustments.setCompatibilityInfo(compatInfo);
             mDisplayAdjustments.setActivityToken(activityToken);
             mResources = mResourcesManager.getTopLevelResources(mPackageInfo.getResDir(),
-                    mPackageInfo.getOverlayDirs(), Display.DEFAULT_DISPLAY, mPackageInfo.getAppDir(), null, compatInfo,
-                    activityToken, this);
+                    mPackageInfo.getOverlayDirs(), Display.DEFAULT_DISPLAY, null, compatInfo,
+                    activityToken);
         } else {
             mDisplayAdjustments.setCompatibilityInfo(packageInfo.getCompatibilityInfo());
             mDisplayAdjustments.setActivityToken(activityToken);
