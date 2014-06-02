@@ -640,9 +640,7 @@ public final class AssetManager {
                                            String targetPkgPath, String prefixPath);
 
     /**
-     * Add a set of assets as an icon pack. A pkgIdOverride value will change the package's id from
-     * what is in the resource table to a new value. Manage this carefully, if icon pack has more
-     * than one package then that next package's id will use pkgIdOverride+1.
+     * Add a set of assets as an icon pack.
      *
      * Icon packs are different from overlays as they have a different pkg id and
      * do not use idmap so no targetPkg is required
@@ -650,7 +648,7 @@ public final class AssetManager {
      * {@hide}
      */
     public native final int addIconPath(String idmapPath, String resArscPath, String resApkPath,
-                                        String prefixPath, int pkgIdOverride);
+                                        String prefixPath);
 
     /**
      * Add a set of common assets.
@@ -669,6 +667,7 @@ public final class AssetManager {
     * {@hide}
     */
     public native final boolean removeOverlayPath(String packageName, int cookie);
+
 
     /**
      * Add multiple sets of assets to the asset manager at once.  See
