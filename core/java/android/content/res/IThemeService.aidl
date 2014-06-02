@@ -25,7 +25,6 @@ interface IThemeService {
     void removeUpdates(in IThemeChangeListener listener);
 
     void requestThemeChange(String pkgName, in List<String> components);
-    void applyDefaultTheme();
     boolean isThemeApplying(String pkgName);
     int getProgress(String pkgName);
 }

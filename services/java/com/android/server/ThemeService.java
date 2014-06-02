@@ -130,6 +130,7 @@ public class ThemeService extends IThemeService.Stub {
     }
 
     public void systemRunning() {
+        applyDefaultThemeIfFirstBoot();
     }
 
     private void doApplyTheme(String pkgName, List<String> components) {
@@ -660,7 +661,7 @@ public class ThemeService extends IThemeService.Stub {
             anim.delete();
     }
 
-    public void applyDefaultTheme() {
+    public void applyDefaultThemeIfFirstBoot() {
         mContext.enforceCallingOrSelfPermission(
                 Manifest.permission.ACCESS_THEME_MANAGER, null);
         final ContentResolver resolver = mContext.getContentResolver();
