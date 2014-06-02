@@ -784,12 +784,10 @@ public final class AssetManager {
         mThemeCookies.add(cookie);
     }
 
-    /** {@hide} */
     public String getAppName() {
         return mAppName;
     }
 
-    /** {@hide} */
     public void setAppName(String pkgName) {
         mAppName = pkgName;
     }
