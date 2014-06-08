@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,10 +102,10 @@ import com.android.internal.policy.impl.keyguard.KeyguardServiceDelegate;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.util.gesture.EdgeGesturePosition;
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.Converter;
-import com.android.internal.util.liquid.HwKeyHelper;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.Converter;
+import com.android.internal.util.centauri.HwKeyHelper;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.internal.widget.PointerLocationView;
 
 import java.io.File;
@@ -2975,7 +2975,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // Reset the check flag for preloading to give it free
         // for next preload call.
         mPreloadedRecentApps = false;
-        LiquidActions.processAction(mContext, action, false);
+        CentauriActions.processAction(mContext, action, false);
     }
 
     /** {@inheritDoc} */

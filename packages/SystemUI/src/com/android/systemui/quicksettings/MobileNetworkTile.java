@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
- * Copyright (C) 2013 CyanogenMod Project
- * Copyright (C) 2013 The SlimRoms Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +35,7 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
 
-import static com.android.internal.util.liquid.DeviceUtils.deviceSupportsMobileData;
+import static com.android.internal.util.centauri.DeviceUtils.deviceSupportsMobileData;
 
 public class MobileNetworkTile extends NetworkTile {
     private static final int NO_OVERLAY = 0;

@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
- * Copyright (C) 2013 CyanogenMod Project
- * Copyright (C) 2013 The SlimRoms Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +24,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.CentauriActions;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -51,7 +49,7 @@ public class SleepScreenTile extends QuickSettingsTile {
 
             @Override
             public boolean onLongClick(View v) {
-                LiquidActions.processAction(mContext, ButtonsConstants.ACTION_POWER_MENU, true);
+                CentauriActions.processAction(mContext, ButtonsConstants.ACTION_POWER_MENU, true);
                 return true;
             }
         };

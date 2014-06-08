@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 SlimRoms (blk_jack)
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,10 +42,10 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.android.internal.util.liquid.ButtonsHelper;
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.ImageHelper;
+import com.android.internal.util.centauri.ButtonsHelper;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.ImageHelper;
 
 import com.android.systemui.R;
 

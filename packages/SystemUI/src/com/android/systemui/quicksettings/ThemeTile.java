@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The SlimRoms Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.CentauriActions;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
@@ -48,7 +48,7 @@ public class ThemeTile extends QuickSettingsTile {
         mOnClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LiquidActions.processAction(mContext, ButtonsConstants.ACTION_THEME_SWITCH, false);
+                CentauriActions.processAction(mContext, ButtonsConstants.ACTION_THEME_SWITCH, false);
             }
         };
 

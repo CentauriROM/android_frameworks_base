@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Team AOSPAL
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.android.internal.util.liquid.QuietHoursHelper;
+import com.android.internal.util.centauri.QuietHoursHelper;
 
 public class NotificationViewManager {
     private final static String TAG = "Keyguard:NotificationViewManager";

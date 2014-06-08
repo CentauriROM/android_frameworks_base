@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android.keyguard;
 
 import android.animation.ObjectAnimator;
@@ -53,12 +54,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.android.internal.telephony.IccCardConstants.State;
-import com.android.internal.util.liquid.AppHelper;
-import com.android.internal.util.liquid.LockscreenTargetUtils;
-import com.android.internal.util.liquid.DeviceUtils;
-import com.android.internal.util.liquid.ImageHelper;
-import com.android.internal.util.liquid.LiquidActions;
-import com.android.internal.util.liquid.TorchConstants;
+import com.android.internal.util.centauri.AppHelper;
+import com.android.internal.util.centauri.LockscreenTargetUtils;
+import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.centauri.ImageHelper;
+import com.android.internal.util.centauri.CentauriActions;
+import com.android.internal.util.centauri.TorchConstants;
 import com.android.internal.view.RotationPolicy;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.multiwaveview.GlowPadView;
@@ -118,7 +119,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                         mCallback.userActivity(0);
                         mCallback.dismiss(false);
                     } else {
-                        LiquidActions.processAction(mContext, targetUri, false);
+                        CentauriActions.processAction(mContext, targetUri, false);
                         mCallback.userActivity(0);
                     }
                 }

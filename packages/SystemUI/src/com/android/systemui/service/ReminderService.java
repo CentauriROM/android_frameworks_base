@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2014 SlimRoms
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,7 +32,7 @@ import android.os.IBinder;
 import android.os.UserHandle;
 import android.provider.Settings;
 
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.systemui.R;
 
 public class ReminderService extends Service {
@@ -70,7 +70,7 @@ public class ReminderService extends Service {
             Intent time = new Intent(
                     "com.android.systemui.timedialog.ReminderTimeDialog");
             time.putExtra("type", "time");
-            LiquidActions.startIntent(this, time, true);
+            CentauriActions.startIntent(this, time, true);
         }
 
         if (clearNoti) {

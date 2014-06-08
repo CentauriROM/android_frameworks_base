@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 SlimRom
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserHandle;
 
-import com.android.internal.util.liquid.TorchConstants;
+import com.android.internal.util.centauri.TorchConstants;
 
 public class Torch extends Activity  {
 

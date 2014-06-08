@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,11 +112,11 @@ public class Build {
         public static final String CODENAME = getString("ro.build.version.codename");
 
         /**
-         * The current version string that defines the liquid version
+         * The current version string that defines the centauri version
          * the device is on.
          * @hide
          */
-        public static final String LIQUID = getString("ro.liquid.version");
+        public static final String CENTAURI = getString("ro.centauri.version");
 
         /**
          * The SDK version to use when accessing resources.

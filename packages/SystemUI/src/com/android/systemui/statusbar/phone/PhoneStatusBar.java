@@ -1,5 +1,5 @@
-    /*
- * Copyright (C) 2010 The Android Open Source Project
+/*
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,12 +106,12 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.android.internal.statusbar.StatusBarIcon;
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.ButtonsHelper;
-import com.android.internal.util.liquid.DeviceUtils;
-import com.android.internal.util.liquid.ShakeListener;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.ButtonsHelper;
+import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.centauri.ShakeListener;
+import com.android.internal.util.centauri.CentauriActions;
 
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.BatteryCircleMeterView;
@@ -2488,7 +2488,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_CURRENT);
             if (event != null && !event.equals(ButtonsConstants.ACTION_NULL)) {
                 customButtonVibrate();
-                LiquidActions.processAction(mContext, event, false);
+                CentauriActions.processAction(mContext, event, false);
             }
         }
     }

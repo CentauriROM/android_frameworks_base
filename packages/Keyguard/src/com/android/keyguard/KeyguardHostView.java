@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,9 +73,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RemoteViews.OnClickHandler;
 
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.ShakeListener;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.ShakeListener;
+import com.android.internal.util.centauri.CentauriActions;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -585,7 +585,7 @@ public class KeyguardHostView extends KeyguardViewBase {
                     if ("**keyguard_camera**".equals(mShakeEvent[direction])) {
                         launchCamera();
                     } else {
-                        LiquidActions.processAction(mContext, mShakeEvent[direction], false);
+                        CentauriActions.processAction(mContext, mShakeEvent[direction], false);
                     }
                 }
             }

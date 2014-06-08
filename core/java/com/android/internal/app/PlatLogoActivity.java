@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import android.widget.Toast;
 public class PlatLogoActivity extends Activity {
     FrameLayout mContent;
     int mCount;
-    private boolean mIsLiquid;
+    private boolean mIsCentauri;
     final Handler mHandler = new Handler();
     static final int BGCOLOR = 0x000000;
 
@@ -81,13 +81,13 @@ public class PlatLogoActivity extends Activity {
         letter.setTextSize(300);
         letter.setTextColor(0xFFFFFFFF);
         letter.setGravity(Gravity.CENTER);
-        letter.setText(mIsLiquid ? "LS" : "LS");
+        letter.setText(mIsCentauri ? "LS" : "LS");
 
         final int p = (int)(4 * metrics.density);
 
         final TextView tv = new TextView(this);
 
-        mIsLiquid = SystemProperties.get("ro.liquid.version") != null;
+        mIsCentauri = SystemProperties.get("ro.centauri.version") != null;
 
         if (light != null) tv.setTypeface(light);
         tv.setTextSize(30);
@@ -96,7 +96,7 @@ public class PlatLogoActivity extends Activity {
         tv.setGravity(Gravity.CENTER);
         tv.setTransformationMethod(new AllCapsTransformationMethod(this));
         tv.setText("Android " + Build.VERSION.RELEASE);
-        tv.setText((mIsLiquid ? "Liquid Kitkat " : "Android ") + Build.VERSION.RELEASE);
+        tv.setText((mIsCentauri ? "Centauri Kitkat " : "Android ") + Build.VERSION.RELEASE);
         tv.setVisibility(View.INVISIBLE);
 
         mContent.addView(bg);

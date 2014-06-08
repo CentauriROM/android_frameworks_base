@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,12 +56,12 @@ import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.FrameLayout;
 
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.ButtonsHelper;
-import com.android.internal.util.liquid.ImageHelper;
-import com.android.internal.util.liquid.DeviceUtils;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.ButtonsHelper;
+import com.android.internal.util.centauri.ImageHelper;
+import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
@@ -131,11 +131,11 @@ public class SearchPanelView extends FrameLayout implements
                 if (!mSearchPanelLock) {
                     mLongPress = true;
                     mBar.hideSearchPanel();
-                    if (!LiquidActions.isActionKeyEvent(mLongList.get(mTarget))) {
+                    if (!CentauriActions.isActionKeyEvent(mLongList.get(mTarget))) {
                         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                     }
                     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
-                    LiquidActions.processAction(mContext, mLongList.get(mTarget), true);
+                    CentauriActions.processAction(mContext, mLongList.get(mTarget), true);
                     mSearchPanelLock = true;
                  }
             }
@@ -172,14 +172,14 @@ public class SearchPanelView extends FrameLayout implements
             final int resId = mGlowPadView.getResourceIdForTarget(target);
             mTarget = target;
             if (!mLongPress) {
-                if (!LiquidActions.isActionKeyEvent(mIntentList.get(target))) {
+                if (!CentauriActions.isActionKeyEvent(mIntentList.get(target))) {
                     performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 }
                 if (!mIntentList.get(target).equals(ButtonsConstants.ACTION_MENU)) {
                     playSoundEffect(SoundEffectConstants.CLICK);
                 }
                 sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-                LiquidActions.processAction(mContext, mIntentList.get(target), false);
+                CentauriActions.processAction(mContext, mIntentList.get(target), false);
                 mHandler.removeCallbacks(SetLongPress);
             }
         }

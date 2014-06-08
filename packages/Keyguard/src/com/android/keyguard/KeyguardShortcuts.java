@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2012 ParanoidAndroid Project
- * Copyright (C) 2013 Slimroms
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android.keyguard;
 
 import android.content.Context;
@@ -37,12 +37,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.internal.R;
-import com.android.internal.util.liquid.AppHelper;
-import com.android.internal.util.liquid.ButtonsHelper;
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.DeviceUtils;
-import com.android.internal.util.liquid.LockscreenTargetUtils;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.AppHelper;
+import com.android.internal.util.centauri.ButtonsHelper;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.centauri.LockscreenTargetUtils;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.internal.widget.LockPatternUtils;
 
 import java.net.URISyntaxException;
@@ -117,7 +117,7 @@ public class KeyguardShortcuts extends LinearLayout {
                     @Override
                     public boolean onLongClick(View v) {
                         doHapticKeyClick(HapticFeedbackConstants.LONG_PRESS);
-                        LiquidActions.processAction(mContext, action, true);
+                        CentauriActions.processAction(mContext, action, true);
                         return true;
                     }
                 });
@@ -126,7 +126,7 @@ public class KeyguardShortcuts extends LinearLayout {
                     @Override
                     public void onClick(View v) {
                         doHapticKeyClick(HapticFeedbackConstants.VIRTUAL_KEY);
-                        LiquidActions.processAction(mContext, action, false);
+                        CentauriActions.processAction(mContext, action, false);
                     }
                 });
             }

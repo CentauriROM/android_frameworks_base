@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 SlimRoms
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.android.internal.util.liquid.QuietHoursHelper;
+import com.android.internal.util.centauri.QuietHoursHelper;
 import com.android.systemui.service.ReminderService;
 
 public class ReminderReceiver extends BroadcastReceiver {

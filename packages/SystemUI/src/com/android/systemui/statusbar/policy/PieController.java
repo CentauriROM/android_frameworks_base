@@ -1,20 +1,19 @@
 /*
- * Copyright (C) 2014 SlimRoms Project
- * This code is loosely based on portions of the CyanogenMod Project (Jens Doll) Copyright (C) 2013
- * and the ParanoidAndroid Project source, Copyright (C) 2012.
+ * Copyright (C) 2014 CentauriROM
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 package com.android.systemui.statusbar.policy;
 
 import android.app.Activity;
@@ -64,12 +63,12 @@ import android.widget.ImageView;
 
 import com.android.internal.util.gesture.EdgeGesturePosition;
 import com.android.internal.util.gesture.EdgeServiceConstants;
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.ButtonsHelper;
-import com.android.internal.util.liquid.Converter;
-import com.android.internal.util.liquid.ImageHelper;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.ButtonsHelper;
+import com.android.internal.util.centauri.Converter;
+import com.android.internal.util.centauri.ImageHelper;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.phone.NavigationBarOverlay;
@@ -831,24 +830,24 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
     @Override
     public void onLongClick(PieItem item) {
         String type = (String) item.longTag;
-        if (!LiquidActions.isActionKeyEvent(type)) {
+        if (!CentauriActions.isActionKeyEvent(type)) {
             mPieContainer.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         }
         mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
-        LiquidActions.processAction(mContext, type, true);
+        CentauriActions.processAction(mContext, type, true);
     }
 
     @Override
     public void onClick(PieItem item) {
         String type = (String) item.tag;
-        if (!LiquidActions.isActionKeyEvent(type)) {
+        if (!CentauriActions.isActionKeyEvent(type)) {
             mPieContainer.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         }
         if (!type.equals(ButtonsConstants.ACTION_MENU)) {
             mPieContainer.playSoundEffect(SoundEffectConstants.CLICK);
         }
         mPieContainer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-        LiquidActions.processAction(mContext, type, false);
+        CentauriActions.processAction(mContext, type, false);
     }
 
     private void doHapticTriggerFeedback() {

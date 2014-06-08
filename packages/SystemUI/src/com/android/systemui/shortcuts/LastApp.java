@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 SlimRom
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.android.internal.util.liquid.ButtonsConstants;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonsConstants;
+import com.android.internal.util.centauri.CentauriActions;
 
 public class LastApp extends Activity  {
 
@@ -33,7 +33,7 @@ public class LastApp extends Activity  {
     @Override
     public void onResume() {
         super.onResume();
-        LiquidActions.processAction(
+        CentauriActions.processAction(
                 this, ButtonsConstants.ACTION_LAST_APP, false);
         this.finish();
     }

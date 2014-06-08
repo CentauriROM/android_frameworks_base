@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2013 The ChameleonOS Project
- * This code has been modified. Portions copyright (C) 2013, OmniRom Project.
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.android.systemui.statusbar.policy.activedisplay;
 
 import android.animation.ObjectAnimator;
@@ -72,8 +72,8 @@ import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.android.internal.util.liquid.DeviceUtils;
-import com.android.internal.util.liquid.QuietHoursHelper;
+import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.centauri.QuietHoursHelper;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;

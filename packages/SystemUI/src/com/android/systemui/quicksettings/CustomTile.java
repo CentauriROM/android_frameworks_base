@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The SlimRoms Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 package com.android.systemui.quicksettings;
 
-import static com.android.internal.util.liquid.QSConstants.TILE_CUSTOM_KEY;
-import static com.android.internal.util.liquid.QSConstants.TILE_CUSTOM_DELIMITER;
+import static com.android.internal.util.centauri.QSConstants.TILE_CUSTOM_KEY;
+import static com.android.internal.util.centauri.QSConstants.TILE_CUSTOM_DELIMITER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -35,10 +35,10 @@ import android.view.LayoutInflater;
 import android.util.Log;
 import android.view.View;
 
-import com.android.internal.util.liquid.AppHelper;
-import com.android.internal.util.liquid.Converter;
-import com.android.internal.util.liquid.ImageHelper;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.AppHelper;
+import com.android.internal.util.centauri.Converter;
+import com.android.internal.util.centauri.ImageHelper;
+import com.android.internal.util.centauri.CentauriActions;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsController;
@@ -115,7 +115,7 @@ public class CustomTile extends QuickSettingsTile {
             @Override
             public boolean onLongClick(View v) {
                 if (mState != -1) {
-                    LiquidActions.processActionWithOptions(
+                    CentauriActions.processActionWithOptions(
                             mContext, mLongActions[mState], false, mCollapse);
                 }
                 return true;
@@ -286,10 +286,10 @@ public class CustomTile extends QuickSettingsTile {
     private void performClickAction() {
         if (mWatchedSetting == null) {
             if (mMatchState && mNumberOfActions >= 1) {
-                LiquidActions.processActionWithOptions(
+                CentauriActions.processActionWithOptions(
                         mContext, mClickActions[mStateMatched], false, mCollapse);
             } else {
-                LiquidActions.processActionWithOptions(
+                CentauriActions.processActionWithOptions(
                         mContext, mClickActions[mState], false, mCollapse);
             }
             updateResources();

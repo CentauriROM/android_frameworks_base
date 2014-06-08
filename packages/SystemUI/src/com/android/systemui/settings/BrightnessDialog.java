@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ public class BrightnessDialog extends Dialog implements
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClassName("com.android.settings",
-                        "com.android.settings.liquid.AutoBrightnessSetup");
+                        "com.android.settings.centauri.AutoBrightnessSetup");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_SINGLE_TOP
                         | Intent.FLAG_ACTIVITY_CLEAR_TOP

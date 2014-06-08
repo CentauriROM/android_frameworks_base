@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,11 +80,11 @@ import java.util.List;
 import java.util.UUID;
 
 import com.android.internal.statusbar.IStatusBarService;
-import com.android.internal.util.liquid.ButtonConfig;
-import com.android.internal.util.liquid.ImageHelper;
-import com.android.internal.util.liquid.PolicyConstants;
-import com.android.internal.util.liquid.PolicyHelper;
-import com.android.internal.util.liquid.LiquidActions;
+import com.android.internal.util.centauri.ButtonConfig;
+import com.android.internal.util.centauri.ImageHelper;
+import com.android.internal.util.centauri.PolicyConstants;
+import com.android.internal.util.centauri.PolicyHelper;
+import com.android.internal.util.centauri.CentauriActions;
 
 /**
  * Helper to show the global actions dialog.  Each item is an {@link Action} that
@@ -352,7 +352,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                             config.getClickAction(), config.getIcon(), true),
                             config.getClickActionDescription()) {
                         public void onPress() {
-                            LiquidActions.processAction(
+                            CentauriActions.processAction(
                                 mContext, config.getClickAction(), false);
                         }
 
@@ -397,7 +397,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                             config.getClickAction(), config.getIcon(), true),
                             config.getClickActionDescription()) {
                         public void onPress() {
-                            LiquidActions.processAction(
+                            CentauriActions.processAction(
                                 mContext, config.getClickAction(), false);
                         }
 
@@ -497,7 +497,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.global_actions_expanded_desktop_mode_off_status) {
 
             void onToggle(boolean on) {
-                LiquidActions.processAction(
+                CentauriActions.processAction(
                     mContext, PolicyConstants.ACTION_EXPANDED_DESKTOP, false);
             }
 
@@ -521,7 +521,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.global_actions_pie_mode_off_status) {
 
             void onToggle(boolean on) {
-                LiquidActions.processAction(
+                CentauriActions.processAction(
                     mContext, PolicyConstants.ACTION_PIE, false);
             }
 
@@ -545,7 +545,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 R.string.global_actions_nav_bar_mode_off_status) {
 
             void onToggle(boolean on) {
-                LiquidActions.processAction(
+                CentauriActions.processAction(
                     mContext, PolicyConstants.ACTION_NAVBAR, false);
             }
 
