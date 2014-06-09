@@ -13,11 +13,24 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Active display -->
     <array name="ad_targets_unlock_only">
         <item>@drawable/ic_ad_target_unlock</item>
     </array>
+
+    <!-- Cardinal directions for the compass tile -->
+    <string-array name="cardinal_directions">
+        <item>N</item>  <!-- North -->
+        <item>NE</item> <!-- North east -->
+        <item>E</item>  <!-- East -->
+        <item>SE</item> <!-- South east -->
+        <item>S</item>  <!-- South -->
+        <item>SW</item> <!-- South west -->
+        <item>W</item>  <!-- West -->
+        <item>NW</item> <!-- North west -->
+    </string-array>
 
 </resources>
