@@ -665,7 +665,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     }
 
-<<<<<<< HEAD
     public Peek getPeekInstance() {
         if(mPeek == null) mPeek = new Peek(this, mContext);
         return mPeek;
