@@ -3055,6 +3055,10 @@ public final class Settings {
          */
         public static final String EXPANDED_DESKTOP_STATE = "expanded_desktop_state";
 
+        public static final String EXPANDED_DESKTOP_STYLE = "expanded_desktop_style";
+
+        public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
+
         /**
          * Whether national data roaming should be used.
          * @hide
@@ -4807,12 +4811,46 @@ public final class Settings {
         public static final String PEEK_STATE = "peek_state";
 
         /**
-         * Hover, default is 0 (off).
+         * Enable Hover, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_ENABLED = "hover_enabled";
+
+        /**
+         * Hover is active, default is 0 (off).
          * 0 = disabled
          * 1 = enabled
          * @hide
          */
-        public static final String HOVER_STATE = "hover_state";
+        public static final String HOVER_ACTIVE = "hover_active";
+
+        /**
+         * Hide HOVER-Button is StatusBar, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_HIDE_BUTTON = "hover_hide_button";
+
+        /**
+         * Hover: Exclude non-clearable notifications, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_EXCLUDE_NON_CLEARABLE = "hover_exclude_non_clearable";
+
+        /**
+         * Hover: Exclude low priority notifications, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
+
+        /**
+         * Show the pending notification counts as overlays on the status bar
+         * @hide
+         */
+        public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -4895,6 +4933,7 @@ public final class Settings {
             QUIET_HOURS_STILL,
             QUIET_HOURS_DIM,
             LOCKSCREEN_ALWAYS_SHOW_BATTERY,
+            SYSTEM_PROFILES_ENABLED,
         };
 		
         /**

@@ -1107,6 +1107,7 @@
   <java-symbol type="drawable" name="cling_button" />
   <java-symbol type="drawable" name="cling_arrow_up" />
   <java-symbol type="drawable" name="cling_bg" />
+  <java-symbol type="drawable" name="ic_lock_expanded_desktop" />
 
   <java-symbol type="layout" name="action_bar_home" />
   <java-symbol type="layout" name="action_bar_title_item" />
@@ -1777,7 +1778,12 @@
   <!-- Config.xml entries -->
   <java-symbol type="bool" name="config_samsung_stk" />
   <java-symbol type="string" name="config_legacyUmsLunFile" />
+  <java-symbol type="string" name="config_deviceKeyHandlerLib" />
+  <java-symbol type="string" name="config_deviceKeyHandlerClass" />
   <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
+
+  <!-- Gesture Sensor -->
+  <java-symbol type="bool" name="config_enableGestureService" />
 
   <!-- Label for the Android system components when they are shown to the user. -->
   <java-symbol type="string" name="android_system_label" />
@@ -1788,4 +1794,5 @@
   <!-- for wifi auto connection -->
   <java-symbol type="bool" name="wifi_autocon" />
 
+  <java-symbol type="bool" name="use_motion_accel" />
 </resources>

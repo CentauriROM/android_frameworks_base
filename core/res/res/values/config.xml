@@ -1399,6 +1399,12 @@
          legacy USB manager should be started. -->
     <string name="config_legacyUmsLunFile">/sys/devices/platform/usb_mass_storage/lun0/file</string>
 
+    <!-- Path to the library that contains a device specific key handler -->
+    <string name="config_deviceKeyHandlerLib" translatable="false"></string>
+
+    <!-- Name of that key handler class -->
+    <string name="config_deviceKeyHandlerClass" translatable="false"></string>
+
     <!-- Boolean to enable Stylus gestures -->
     <bool name="config_stylusGestures">false</bool>
 
@@ -1420,6 +1426,9 @@
         For example, a device with Home, Back and Menu keys would set this
         config to 7. -->
     <integer name="config_deviceHardwareKeys">0</integer>
+
+    <!-- True if the gesture service should be started at system start -->
+    <bool name="config_enableGestureService">false</bool>
 
     <!-- Device supports LED flashlight -->
     <bool name="config_enableTorch">false</bool>
@@ -1445,4 +1454,20 @@
          1 - The device DOES have a permanent menu key; ignore autodetection.
          2 - The device DOES NOT have a permanent menu key; ignore autodetection. -->
     <integer name="config_overrideHasPermanentMenuKey">0</integer>
+	
+    <!-- Control the behavior when the user long presses the menu button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnMenuBehavior">0</integer>
+
+    <!-- bool value to for enabling motion accelerometer -->
+    <bool name="use_motion_accel">false</bool>
+
 </resources>
