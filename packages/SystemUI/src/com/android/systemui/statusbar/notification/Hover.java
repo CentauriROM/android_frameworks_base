@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 ParanoidAndroid Project.
+ * Copyright (C) 2014 CentauriROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,17 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.IWindowManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.WindowManagerGlobal;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
@@ -44,10 +47,10 @@ import com.android.systemui.statusbar.NotificationData.Entry;
 import java.util.ArrayList;
 
 /**
- * Hover constructor
- * Handles creating, processing and displaying hover notifications
- * Must be initilized and needs a NotificationHelper instance
- */
+* Hover constructor
+* Handles creating, processing and displaying hover notifications
+* Must be initilized and needs a NotificationHelper instance
+*/
 public class Hover {
 
     public static final boolean DEBUG = false;
@@ -95,11 +98,13 @@ public class Hover {
     private ArrayList<HoverNotification> mNotificationList;
     private ArrayList<StatusBarNotification> mStatusBarNotifications;
 
+    private IWindowManager mWindowManagerService;
+
     /**
-     * Creates a new hover instance
-     * @Param context the current Context
-     * @Param statusBar the current BaseStatusBar
-     */
+* Creates a new hover instance
+* @Param context the current Context
+* @Param statusBar the current BaseStatusBar
+*/
     public Hover(BaseStatusBar statusBar, Context context) {
         mContext = context;
         mStatusBar = statusBar;
@@ -110,6 +115,7 @@ public class Hover {
         mHoverHeight = mContext.getResources().getDimensionPixelSize(R.dimen.hover_height);
         mNotificationList = new ArrayList<HoverNotification>();
         mStatusBarNotifications = new ArrayList<StatusBarNotification>();
+        mWindowManagerService = WindowManagerGlobal.getWindowManagerService();
 
         // root hover view
         mNotificationView = (FrameLayout) mHoverLayout.findViewById(R.id.hover_notification);
@@ -334,6 +340,11 @@ public class Hover {
                 Settings.System.DIALPAD_STATE, 0) != 0;
     }
 
+    public boolean requireFullscreenMode() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HOVER_REQUIRE_FULLSCREEN_MODE, 1) != 0;
+    }
+
     public boolean excludeNonClearable() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HOVER_EXCLUDE_NON_CLEARABLE, 0) != 0;
@@ -462,11 +473,11 @@ public class Hover {
             final View currentLayout = mNotificationView.getChildAt(0);
 
             /**
-             * TODO:
-             * Animated (with same show duration) reverse expander.
-             * Reset expanding before overriding (bad UI):
-             * we should animate dexpansion with same duration @ANIMATION_DURATION
-             */
+* TODO:
+* Animated (with same show duration) reverse expander.
+* Reset expanding before overriding (bad UI):
+* we should animate dexpansion with same duration @ANIMATION_DURATION
+*/
 
             updateNotificationLayoutParams(currentNotification);
             currentNotification.getEntry().row.setExpanded(false);
@@ -616,6 +627,19 @@ public class Hover {
             allowed = mStatusBar.getNotificationManager().isPackageAllowedForHover(packageName);
         } catch (android.os.RemoteException ex) {
             // System is dead
+        }
+
+        //Check for fullscreen mode
+        if (requireFullscreenMode()) {
+            int vis = 0;
+            try {
+                vis = mWindowManagerService.getSystemUIVisibility();
+            } catch (android.os.RemoteException ex) {
+            }
+            final boolean isStatusBarVisible = (vis & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0
+                    || (vis & View.STATUS_BAR_TRANSIENT) != 0;
+            if (isStatusBarVisible)
+                allowed = false;
         }
 
         //Exclude non-clearable
