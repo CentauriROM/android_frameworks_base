@@ -4804,13 +4804,6 @@ public final class Settings {
         public static final String PEEK_STATE = "peek_state";
 
         /**
-* Enable Hover, default is 0 (off).
-*
-* @hide
-*/
-        public static final String HOVER_ENABLED = "hover_enabled";
-
-        /**
 * Hover is active, default is 0 (off).
 * 0 = disabled
 * 1 = enabled
@@ -4845,6 +4838,13 @@ public final class Settings {
 * @hide
 */
         public static final String HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
+
+        /**
+* Hover: Option to exclude topmost app, default is 1 (on).
+*
+* @hide
+*/
+        public static final String HOVER_EXCLUDE_TOPMOST = "hover_exclude_topmost";
 
         /**
 * Show the pending notification counts as overlays on the status bar

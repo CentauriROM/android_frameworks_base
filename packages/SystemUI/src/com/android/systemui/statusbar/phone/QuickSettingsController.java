@@ -16,50 +16,51 @@
 
 package com.android.systemui.statusbar.phone;
 
-import static com.android.internal.util.centauri.QSConstants.TILES_DEFAULT;
-import static com.android.internal.util.centauri.QSConstants.DYNAMIC_TILES_DEFAULT;
-import static com.android.internal.util.centauri.QSConstants.TILE_AIRPLANE;
-import static com.android.internal.util.centauri.QSConstants.TILE_ALARM;
-import static com.android.internal.util.centauri.QSConstants.TILE_AUTOROTATE;
-import static com.android.internal.util.centauri.QSConstants.TILE_BATTERY;
-import static com.android.internal.util.centauri.QSConstants.TILE_BATTERYSAVER;
-import static com.android.internal.util.centauri.QSConstants.TILE_BLUETOOTH;
-import static com.android.internal.util.centauri.QSConstants.TILE_BRIGHTNESS;
-import static com.android.internal.util.centauri.QSConstants.TILE_BUGREPORT;
-import static com.android.internal.util.centauri.QSConstants.TILE_CAMERA;
-import static com.android.internal.util.centauri.QSConstants.TILE_COMPASS;
-import static com.android.internal.util.centauri.QSConstants.TILE_CONTACT;
-import static com.android.internal.util.centauri.QSConstants.TILE_CUSTOM;
-import static com.android.internal.util.centauri.QSConstants.TILE_CUSTOM_KEY;
-import static com.android.internal.util.centauri.QSConstants.TILE_DELIMITER;
-import static com.android.internal.util.centauri.QSConstants.TILE_EXPANDEDDESKTOP;
-import static com.android.internal.util.centauri.QSConstants.TILE_IMESWITCHER;
-import static com.android.internal.util.centauri.QSConstants.TILE_LOCATION;
-import static com.android.internal.util.centauri.QSConstants.TILE_LOCKSCREEN;
-import static com.android.internal.util.centauri.QSConstants.TILE_LTE;
-import static com.android.internal.util.centauri.QSConstants.TILE_MOBILEDATA;
-import static com.android.internal.util.centauri.QSConstants.TILE_MUSIC;
-import static com.android.internal.util.centauri.QSConstants.TILE_NETWORKMODE;
-import static com.android.internal.util.centauri.QSConstants.TILE_NFC;
-import static com.android.internal.util.centauri.QSConstants.TILE_QUICKRECORD;
-import static com.android.internal.util.centauri.QSConstants.TILE_QUIETHOURS;
-import static com.android.internal.util.centauri.QSConstants.TILE_RINGER;
-import static com.android.internal.util.centauri.QSConstants.TILE_SCREENTIMEOUT;
-import static com.android.internal.util.centauri.QSConstants.TILE_SETTINGS;
-import static com.android.internal.util.centauri.QSConstants.TILE_SHAKE;
-import static com.android.internal.util.centauri.QSConstants.TILE_SLEEP;
-import static com.android.internal.util.centauri.QSConstants.TILE_SYNC;
-import static com.android.internal.util.centauri.QSConstants.TILE_THEME;
-import static com.android.internal.util.centauri.QSConstants.TILE_TORCH;
-import static com.android.internal.util.centauri.QSConstants.TILE_USBTETHER;
-import static com.android.internal.util.centauri.QSConstants.TILE_USER;
-import static com.android.internal.util.centauri.QSConstants.TILE_VOLUME;
-import static com.android.internal.util.centauri.QSConstants.TILE_WIFI;
-import static com.android.internal.util.centauri.QSConstants.TILE_WIFIAP;
-import static com.android.internal.util.centauri.QSConstants.TILE_REBOOT;
-import static com.android.internal.util.centauri.QSConstants.TILE_ONTHEGO;
-import static com.android.internal.util.centauri.QSConstants.TILE_FCHARGE;
-import static com.android.internal.util.centauri.QSConstants.TILE_PROFILE;
+import static com.android.internal.util.liquid.QSConstants.TILES_DEFAULT;
+import static com.android.internal.util.liquid.QSConstants.DYNAMIC_TILES_DEFAULT;
+import static com.android.internal.util.liquid.QSConstants.TILE_AIRPLANE;
+import static com.android.internal.util.liquid.QSConstants.TILE_ALARM;
+import static com.android.internal.util.liquid.QSConstants.TILE_AUTOROTATE;
+import static com.android.internal.util.liquid.QSConstants.TILE_BATTERY;
+import static com.android.internal.util.liquid.QSConstants.TILE_BATTERYSAVER;
+import static com.android.internal.util.liquid.QSConstants.TILE_BLUETOOTH;
+import static com.android.internal.util.liquid.QSConstants.TILE_BRIGHTNESS;
+import static com.android.internal.util.liquid.QSConstants.TILE_BUGREPORT;
+import static com.android.internal.util.liquid.QSConstants.TILE_CAMERA;
+import static com.android.internal.util.liquid.QSConstants.TILE_COMPASS;
+import static com.android.internal.util.liquid.QSConstants.TILE_CONTACT;
+import static com.android.internal.util.liquid.QSConstants.TILE_CUSTOM;
+import static com.android.internal.util.liquid.QSConstants.TILE_CUSTOM_KEY;
+import static com.android.internal.util.liquid.QSConstants.TILE_DELIMITER;
+import static com.android.internal.util.liquid.QSConstants.TILE_EXPANDEDDESKTOP;
+import static com.android.internal.util.liquid.QSConstants.TILE_IMESWITCHER;
+import static com.android.internal.util.liquid.QSConstants.TILE_LOCATION;
+import static com.android.internal.util.liquid.QSConstants.TILE_LOCKSCREEN;
+import static com.android.internal.util.liquid.QSConstants.TILE_LTE;
+import static com.android.internal.util.liquid.QSConstants.TILE_MOBILEDATA;
+import static com.android.internal.util.liquid.QSConstants.TILE_MUSIC;
+import static com.android.internal.util.liquid.QSConstants.TILE_NETWORKMODE;
+import static com.android.internal.util.liquid.QSConstants.TILE_NFC;
+import static com.android.internal.util.liquid.QSConstants.TILE_QUICKRECORD;
+import static com.android.internal.util.liquid.QSConstants.TILE_QUIETHOURS;
+import static com.android.internal.util.liquid.QSConstants.TILE_RINGER;
+import static com.android.internal.util.liquid.QSConstants.TILE_SCREENTIMEOUT;
+import static com.android.internal.util.liquid.QSConstants.TILE_SETTINGS;
+import static com.android.internal.util.liquid.QSConstants.TILE_SHAKE;
+import static com.android.internal.util.liquid.QSConstants.TILE_SLEEP;
+import static com.android.internal.util.liquid.QSConstants.TILE_SYNC;
+import static com.android.internal.util.liquid.QSConstants.TILE_THEME;
+import static com.android.internal.util.liquid.QSConstants.TILE_TORCH;
+import static com.android.internal.util.liquid.QSConstants.TILE_USBTETHER;
+import static com.android.internal.util.liquid.QSConstants.TILE_USER;
+import static com.android.internal.util.liquid.QSConstants.TILE_VOLUME;
+import static com.android.internal.util.liquid.QSConstants.TILE_WIFI;
+import static com.android.internal.util.liquid.QSConstants.TILE_WIFIAP;
+import static com.android.internal.util.liquid.QSConstants.TILE_REBOOT;
+import static com.android.internal.util.liquid.QSConstants.TILE_ONTHEGO;
+import static com.android.internal.util.liquid.QSConstants.TILE_FCHARGE;
+import static com.android.internal.util.liquid.QSConstants.TILE_PROFILE;
+import static com.android.internal.util.liquid.QSConstants.TILE_HOVER;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -77,7 +78,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 
-import com.android.internal.util.centauri.DeviceUtils;
+import com.android.internal.util.liquid.DeviceUtils;
 import com.android.systemui.quicksettings.AirplaneModeTile;
 import com.android.systemui.quicksettings.AlarmTile;
 import com.android.systemui.quicksettings.AutoRotateTile;
@@ -119,6 +120,7 @@ import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.OnTheGoTile;
 import com.android.systemui.quicksettings.FastChargeTile;
 import com.android.systemui.quicksettings.ProfileTile;
+import com.android.systemui.quicksettings.HoverTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -286,6 +288,8 @@ public class QuickSettingsController {
                 qs = new BatterySaverTile(mContext, this);
             } else if (tile.equals(TILE_PROFILE)) {
                 qs = new ProfileTile(mContext, this);
+            } else if (tile.equals(TILE_HOVER)) {
+                qs = new HoverTile(mContext, this);
             }
 
             if (qs != null) {
