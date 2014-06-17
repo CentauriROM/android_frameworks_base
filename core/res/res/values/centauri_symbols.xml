@@ -256,6 +256,12 @@
   <java-symbol type="string" name="setting_confirmation_ask_me_later" />
   <java-symbol type="string" name="setting_confirmation_yes" />
   <java-symbol type="string" name="setting_confirmation_no" />
+  
+   <!--Profiles-->
+  <java-symbol type="string" name="profile_none" />
+  <java-symbol type="string" name="profile_picker_title" />
+  <java-symbol type="string" name="wildcardProfile" />
+  <java-symbol type="xml" name="profile_default" />
 
   <!--Profiles-->
   <java-symbol type="string" name="profile_none" />
