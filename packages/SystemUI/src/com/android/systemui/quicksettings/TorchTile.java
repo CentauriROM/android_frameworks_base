@@ -45,6 +45,9 @@ public class TorchTile extends QuickSettingsTile {
             @Override
             public void onClick(View v) {
                 CentauriActions.processAction(mContext, ButtonsConstants.ACTION_TORCH, false);
+                if (isFlipTilesEnabled()) {
+                    flipTile(0);
+                }
             }
         };
 
