@@ -755,9 +755,10 @@ class MountService extends IMountService.Stub
                             VoldResponseCode.VolumeListResult);
                     for (String volstr : vols) {
                         String[] tok = volstr.split(" ");
-                        // FMT: <label> <mountpoint> <state>
+                        // FMT: <label> <mountpoint> <state> <uuid>
                         String path = tok[1];
                         String state = Environment.MEDIA_REMOVED;
+                        String uuid = tok[3];
 
                         final StorageVolume volume;
                         synchronized (mVolumesLock) {
@@ -772,14 +773,6 @@ class MountService extends IMountService.Stub
                         } else if (st == VolumeState.Mounted) {
                             state = Environment.MEDIA_MOUNTED;
                             Slog.i(TAG, "Media already mounted on daemon connection");
-                            if (volume.getUuid() == null) {
-                                Slog.i(TAG, "Scanning UUID");
-                                try {
-                                    mConnector.execute("volume", "scanuuid", path);
-                                } catch (NativeDaemonConnectorException ex) {
-                                    Slog.e(TAG, "Failed to scan UUID at " + path);
-                                }
-                            }
                         } else if (st == VolumeState.Shared) {
                             state = Environment.MEDIA_SHARED;
                             Slog.i(TAG, "Media shared on daemon connection");
@@ -790,6 +783,9 @@ class MountService extends IMountService.Stub
                         if (state != null) {
                             if (DEBUG_EVENTS) Slog.i(TAG, "Updating valid state " + state);
                             updatePublicVolumeState(volume, state);
+                            if (uuid != "-") {
+                                volume.setUuid(uuid);
+                            }
                         }
                     }
                 } catch (Exception e) {
